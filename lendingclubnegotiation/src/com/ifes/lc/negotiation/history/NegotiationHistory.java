@@ -12,7 +12,26 @@ public class NegotiationHistory extends CsvBean{
 	@CsvNumber("#.00")
 	@CsvBindByName(column="customer_annual_inc")
 	private Double customerAnnualInc;
-	
+
+	@CsvNumber("#.00")
+	@CsvBindByName(column="customer_tot_cur_bal")
+	private Double customerTotalCurrentBalance;
+
+	@CsvNumber("#.00")
+	@CsvBindByName(column="customer_dti")
+	private Double customerDebtToIncomeRatio;
+
+	@CsvNumber("#.00")
+	@CsvBindByName(column="customer_revol_bal")
+	private Double customerRevolvingBalance;
+
+	@CsvNumber("#.00")
+	@CsvBindByName(column="customer_revol_util")
+	private Double customerRevolvingUtilization;
+
+	@CsvBindByName(column="customer_total_acc")
+	private Integer customerTotalOpenAcc;
+
 	@CsvNumber("#.00")
 	@CsvBindByName(column="customer_int_rate_min")
 	private Double customerMinIntRate;
@@ -326,22 +345,81 @@ public class NegotiationHistory extends CsvBean{
 		this.negotiationDefaultProb = negotiationDefaultProb;
 	}
 
+	public Double getCustomerTotalCurrentBalance() {
+		return customerTotalCurrentBalance;
+	}
+
+	public void setCustomerTotalCurrentBalance(Double customerTotalCurrentBalance) {
+		this.customerTotalCurrentBalance = customerTotalCurrentBalance;
+	}
+
+	public Double getCustomerDebtToIncomeRatio() {
+		return customerDebtToIncomeRatio;
+	}
+
+	public void setCustomerDebtToIncomeRatio(Double customerDebtToIncomeRatio) {
+		this.customerDebtToIncomeRatio = customerDebtToIncomeRatio;
+	}
+
+	public Double getCustomerRevolvingBalance() {
+		return customerRevolvingBalance;
+	}
+
+	public void setCustomerRevolvingBalance(Double customerRevolvingBalance) {
+		this.customerRevolvingBalance = customerRevolvingBalance;
+	}
+
+	public Double getCustomerRevolvingUtilization() {
+		return customerRevolvingUtilization;
+	}
+
+	public void setCustomerRevolvingUtilization(Double customerRevolvingUtilization) {
+		this.customerRevolvingUtilization = customerRevolvingUtilization;
+	}
+
+	public Integer getCustomerTotalOpenAcc() {
+		return customerTotalOpenAcc;
+	}
+
+	public void setCustomerTotalOpenAcc(Integer customerTotalOpenAcc) {
+		this.customerTotalOpenAcc = customerTotalOpenAcc;
+	}
+
 	@Override
 	public String toString() {
-		return "NegotiationHistory [customerGrade=" + customerGrade + ", customerAnnualInc=" + customerAnnualInc
-				+ ", customerMinIntRate=" + customerMinIntRate + ", customerMaxIntRate=" + customerMaxIntRate
-				+ ", customerMinInstallments=" + customerMinInstallments + ", customerMaxInstallments="
-				+ customerMaxInstallments + ", customerMaxAmount=" + customerMaxAmount + ", customerMinAmount="
-				+ customerMinAmount + ", bankMinIntRate=" + bankMinIntRate + ", bankMaxIntRate=" + bankMaxIntRate
-				+ ", bankMinInstallments=" + bankMinInstallments + ", bankMaxInstallments=" + bankMaxInstallments
-				+ ", bankMinAmount=" + bankMinAmount + ", bankMaxAmount=" + bankMaxAmount + ", negotiationDeal="
-				+ negotiationDeal + ", negotiationRounds=" + negotiationRounds + ", firstBankInstallmentsProposal="
-				+ firstBankInstallmentsProposal + ", firstBankAmountProposal=" + firstBankAmountProposal
-				+ ", firstBankIntRateProposal=" + firstBankIntRateProposal + ", firstCustomerInstallmentsProposal="
-				+ firstCustomerInstallmentsProposal + ", firstCustomerAmountProposal=" + firstCustomerAmountProposal
-				+ ", firstCustomerIntRateProposal=" + firstCustomerIntRateProposal + ", lastInstallmentsProposal="
-				+ lastInstallmentsProposal + ", lastAmountProposal=" + lastAmountProposal + ", lastIntRateProposal="
-				+ lastIntRateProposal + ", negotiationDefault=" + negotiationDefault + ", negotiationDefaultProb="
-				+ negotiationDefaultProb + "]";
+		return "NegotiationHistory{" +
+				"customerGrade=" + customerGrade +
+				", customerAnnualInc=" + customerAnnualInc +
+				", customerTotalCurrentBalance=" + customerTotalCurrentBalance +
+				", customerDebtToIncomeRatio=" + customerDebtToIncomeRatio +
+				", customerRevolvingBalance=" + customerRevolvingBalance +
+				", customerRevolvingUtilization=" + customerRevolvingUtilization +
+				", customerTotalOpenAcc=" + customerTotalOpenAcc +
+				", customerMinIntRate=" + customerMinIntRate +
+				", customerMaxIntRate=" + customerMaxIntRate +
+				", customerMinInstallments=" + customerMinInstallments +
+				", customerMaxInstallments=" + customerMaxInstallments +
+				", customerMaxAmount=" + customerMaxAmount +
+				", customerMinAmount=" + customerMinAmount +
+				", bankMinIntRate=" + bankMinIntRate +
+				", bankMaxIntRate=" + bankMaxIntRate +
+				", bankMinInstallments=" + bankMinInstallments +
+				", bankMaxInstallments=" + bankMaxInstallments +
+				", bankMinAmount=" + bankMinAmount +
+				", bankMaxAmount=" + bankMaxAmount +
+				", negotiationDeal=" + negotiationDeal +
+				", negotiationRounds=" + negotiationRounds +
+				", firstBankInstallmentsProposal=" + firstBankInstallmentsProposal +
+				", firstBankAmountProposal=" + firstBankAmountProposal +
+				", firstBankIntRateProposal=" + firstBankIntRateProposal +
+				", firstCustomerInstallmentsProposal=" + firstCustomerInstallmentsProposal +
+				", firstCustomerAmountProposal=" + firstCustomerAmountProposal +
+				", firstCustomerIntRateProposal=" + firstCustomerIntRateProposal +
+				", lastInstallmentsProposal=" + lastInstallmentsProposal +
+				", lastAmountProposal=" + lastAmountProposal +
+				", lastIntRateProposal=" + lastIntRateProposal +
+				", negotiationDefault=" + negotiationDefault +
+				", negotiationDefaultProb=" + negotiationDefaultProb +
+				'}';
 	}
 }

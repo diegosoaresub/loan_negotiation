@@ -21,19 +21,19 @@ pd.set_option('display.float_format', lambda x: locale.format('%.2f', x, groupin
 
 locale.setlocale(locale.LC_ALL, 'pt_br.utf-8')
 
-loans = pd.read_csv('../processed_data/loan_2007_2016Q4_old.csv', low_memory=False)
+loans = pd.read_csv('loan_2007_2016Q4_old.csv', low_memory=False)
 
 loans = loans[[
         'loan_status',
         'int_rate',
-#        'tot_cur_bal',
+        'tot_cur_bal',
         'grade',
         'dti',
-#        'revol_bal',
-#        'revol_util',
+        'revol_bal',
+        'revol_util',
         'annual_inc',
         'loan_amnt',
-#        'total_acc'
+        'total_acc'
 ]];
 
 #Balanced data
@@ -57,7 +57,7 @@ clf = GradientBoostingClassifier(n_estimators=200,
 clf.fit(x_train, y_train)
 
 print('Salvando modelo')
-joblib.dump(clf, 'gradient_boosting_model.pkl') 
+joblib.dump(clf, 'gradient_boosting_model_9_features.pkl') 
 print('Modelo salvo')
 
 predict = clf.predict(x_test)

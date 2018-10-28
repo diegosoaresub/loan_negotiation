@@ -114,11 +114,19 @@ public class NegotiationHost {
 		
 //		Check the last proposal default probability
 		Map<String, Double> request = new HashMap<>();
-		request.put(actualProposal.get(Constants.JUROS).getNameOnModel(), lastIntRate);
-		request.put(actualProposal.get(Constants.QUANTIA).getNameOnModel(), lastAmount);
-		request.put(Constants.ANNUAL_INCOME, currentHistory.getCustomerAnnualInc());
-		request.put(Constants.GRADE, currentHistory.getCustomerGrade().doubleValue());
-		
+        request.put(actualProposal.get(Constants.JUROS).getNameOnModel(), lastIntRate);
+        request.put(actualProposal.get(Constants.QUANTIA).getNameOnModel(), lastAmount);
+
+
+        request.put(Constants.ANNUAL_INCOME, currentHistory.getCustomerAnnualInc());
+        request.put(Constants.GRADE, currentHistory.getCustomerGrade().doubleValue());
+        request.put(Constants.TOTAL_CURRENT_BALANCE, currentHistory.getCustomerTotalCurrentBalance());
+        request.put(Constants.DEBT_TO_INCOME_RATIO, currentHistory.getCustomerDebtToIncomeRatio());
+        request.put(Constants.REVOLVING_BALANCE, currentHistory.getCustomerRevolvingBalance());
+        request.put(Constants.REVOLVING_UTILIZATION_RATE, currentHistory.getCustomerRevolvingUtilization());
+        request.put(Constants.TOTAL_ACCOUNTS, currentHistory.getCustomerTotalOpenAcc().doubleValue());
+
+
 		DefaultPredictionResponse response = DefaultPredictionService.getInstance().predict(request);
 		Log.println("\n\t\tResultado: ");
 		Log.println("\t\t\tPredicao: " + response.getPredicted_class());

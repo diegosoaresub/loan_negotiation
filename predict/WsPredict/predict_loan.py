@@ -12,7 +12,7 @@ class PredictLoan:
     
     def __init__(self):
         print('Loading Gradient Boosting Model...')
-        self.clf = joblib.load('gradient_boosting_model.pkl') 
+        self.clf = joblib.load('gradient_boosting_model_9_features.pkl') 
     
     
     def predictDefault(self, user_info):

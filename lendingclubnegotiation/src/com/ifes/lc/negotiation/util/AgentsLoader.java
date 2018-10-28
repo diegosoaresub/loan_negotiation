@@ -58,13 +58,33 @@ public class AgentsLoader {
 		Map<String, Information> info = new HashMap<>();
 		info.put(Constants.GRADE, new Information(Constants.GRADE, nextGrade()));
 		info.put(Constants.ANNUAL_INCOME, new Information(Constants.ANNUAL_INCOME, ThreadLocalRandom.current().nextDouble(10000, 80000)));
-		
-		
+
+		info.put(Constants.TOTAL_CURRENT_BALANCE, new Information(Constants.TOTAL_CURRENT_BALANCE,
+				ThreadLocalRandom.current().nextDouble(10_000, 270_000)));
+
+		info.put(Constants.DEBT_TO_INCOME_RATIO, new Information(Constants.DEBT_TO_INCOME_RATIO,
+				ThreadLocalRandom.current().nextDouble(5, 30)));
+
+		info.put(Constants.REVOLVING_BALANCE, new Information(Constants.REVOLVING_BALANCE,
+				ThreadLocalRandom.current().nextDouble(2_0000, 25_000)));
+
+		info.put(Constants.REVOLVING_UTILIZATION_RATE, new Information(Constants.REVOLVING_UTILIZATION_RATE,
+				ThreadLocalRandom.current().nextDouble(15, 85)));
+
+		info.put(Constants.TOTAL_ACCOUNTS, new Information(Constants.TOTAL_ACCOUNTS,
+				ThreadLocalRandom.current().nextInt(2, 30)));
+
 		NegotiationHistory currentHistory = HistoryManager.getInstance().getCurrentHistory();
 		
 		currentHistory.setCustomerAnnualInc(info.get(Constants.ANNUAL_INCOME).getDoubleValue());
 		currentHistory.setCustomerGrade(info.get(Constants.GRADE).getIntegerValue());
-		
+
+		currentHistory.setCustomerTotalCurrentBalance(info.get(Constants.TOTAL_CURRENT_BALANCE).getDoubleValue());
+		currentHistory.setCustomerDebtToIncomeRatio(info.get(Constants.DEBT_TO_INCOME_RATIO).getDoubleValue());
+		currentHistory.setCustomerRevolvingBalance(info.get(Constants.REVOLVING_BALANCE).getDoubleValue());
+		currentHistory.setCustomerRevolvingUtilization(info.get(Constants.REVOLVING_UTILIZATION_RATE).getDoubleValue());
+		currentHistory.setCustomerTotalOpenAcc(info.get(Constants.TOTAL_ACCOUNTS).getIntegerValue());
+
 		currentHistory.setCustomerMinIntRate(minInterest);
 		currentHistory.setCustomerMaxIntRate(maxInterest);
 		

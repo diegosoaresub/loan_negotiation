@@ -23,7 +23,7 @@ pd.set_option('max_colwidth', 5000)
 pd.set_option('display.float_format', lambda x: locale.format('%.2f', x, grouping=True))
 locale.setlocale(locale.LC_ALL, 'pt_br.utf-8')
 
-results_proposed=pd.read_csv('../../history/test.csv', low_memory=False)
+results_proposed=pd.read_csv('../../history/result_ai.csv', low_memory=False)
 results_ref=pd.read_csv('../../history/result_fixed.csv', low_memory=False)
 
 

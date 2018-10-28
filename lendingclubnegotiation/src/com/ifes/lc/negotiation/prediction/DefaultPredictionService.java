@@ -63,14 +63,13 @@ public class DefaultPredictionService {
 	}
 
 	
-	public DefaultPredictionResponse predict(Map<String, Double> params) {
+	public DefaultPredictionResponse predict(Map params) {
 		
-		DefaultPredictionResponse result = webTarget
-							.path("predictDefault")
-							.request(MediaType.APPLICATION_JSON)
-							.post(Entity.json(params))
-							.readEntity(DefaultPredictionResponse.class);		
-		return result;
+		return webTarget
+					.path("predictDefault")
+					.request(MediaType.APPLICATION_JSON)
+					.post(Entity.json(params))
+					.readEntity(DefaultPredictionResponse.class);
 	}
 
 	public NextProposalResponse nextProposal(Map<String, Object> params) {

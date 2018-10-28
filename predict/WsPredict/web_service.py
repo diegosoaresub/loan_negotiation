@@ -17,7 +17,7 @@ predict = PredictLoan()
 print('Service Started...')
 
 @app.route("/nextProposal", methods=['GET', 'POST'])
-def nextProposal():    
+def nextProposal():
     request_content = request.get_json()
     
     print("Request: \n", json.dumps(request_content, indent=2))
@@ -28,22 +28,25 @@ def nextProposal():
     
     print("Limits:")
     print("\tInterest Rate: {} - {}".format(fixedLimits['int_rate']['min'],fixedLimits['int_rate']['max']))
-    print("\tAmount: {} - {}\n".format(fixedLimits['loan_amnt']['min'],fixedLimits['loan_amnt']['max']))
-
-
-    result = Proposal.calculateNextProposal(predict, limits, customer_grade, request_content['annual_inc'], 
-                                            request_content['installments'], request_content['loan_amnt'],
-                                            request_content['int_rate'], request_content['round'], fixedLimits)
+    print("\tAmount: {} - {}\n".format(fixedLimits['loan_amnt']['min'],fixedLimits['loan_amnt']['max']))     
     
+#    result = Proposal.calculateNextProposal(predict, limits, customer_grade, request_content['annual_inc'],
+#                                            request_content['dti'], request_content['revol_bal'],
+#                                            request_content['revol_util'], request_content['tot_cur_bal'], 
+#                                            request_content['total_acc'], request_content['installments'], 
+#                                            request_content['loan_amnt'], request_content['int_rate'], 
+#                                            request_content['round'], fixedLimits)
+    
+    result = Proposal.calculateNextProposal(predict, limits, request_content, 
+                                            request_content['round'], fixedLimits)
     
         
     return jsonify(
                 int_rate=result["int_rate"],
                 loan_amnt=result["loan_amnt"],
-                installments=result["installments"]                
+                installments=request_content["installments"]                
             )
-
-
+    
 @app.route("/calculateFixedLimits", methods=['GET', 'POST'])
 def calculateFixedLimits():    
 
@@ -97,14 +100,14 @@ def predictDefault():
     df = pd.DataFrame(content, index=[0])
     df = df[[
             'int_rate', 
-#             'tot_cur_bal', 
+             'tot_cur_bal', 
              'grade', 
-#             'dti', 
-#             'revol_bal', 
-#             'revol_util', 
+             'dti', 
+             'revol_bal', 
+             'revol_util', 
              'annual_inc', 
              'loan_amnt', 
-#             'total_acc'
+             'total_acc'
              ]]
                  
     
